@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiClient {
     companion object{
-        private val URL = "https://www.omdbapi.com/"
+        private val URL = "https://www.omdbapi.com"
         private var retrofit : Retrofit? = null
         fun getRetrofit() : Retrofit{
             if(retrofit == null){

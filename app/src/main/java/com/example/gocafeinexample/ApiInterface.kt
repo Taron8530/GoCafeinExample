@@ -5,10 +5,16 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ApiInterface {
-    @GET("/?type=movie")
+    @GET("/?")
     fun searchMovies(
+        @Query("apikey") apiKey: String,
+        @Query("s") movieName: String,
+        @Query("page") page : Int
+    ): Call<SearchResponseDataDTO>
+    @GET("/?")
+    fun detailInformation(
         @Query("apikey") apiKey: String?,
         @Query("s") searchKeyword: String?,
         @Query("page") page: Int
-    ): Call<MovieResponse?>?
+    ): Call<SearchResponseDataDTO?>?
 }
