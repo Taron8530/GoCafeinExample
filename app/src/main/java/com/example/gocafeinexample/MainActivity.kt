@@ -6,18 +6,11 @@ import android.os.Bundle
 import android.text.style.BulletSpan
 import android.util.Log
 import android.view.View
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.example.gocafeinexample.databinding.ActivityMainBinding
-import com.example.gocafeinexample.BuildConfig
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlin.coroutines.coroutineContext
-
 class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
     private val mainActivityBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
@@ -27,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(mainActivityBinding.root)
+        init()
         recyclerViewInit()
     }
     fun infinityScroll(){
@@ -56,6 +50,25 @@ class MainActivity : AppCompatActivity() {
         })
 
     }
+
+    fun init(){
+        mainActivityBinding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if(query != null){
+                    searchMovie(query)
+                }
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if(newText?.length == 0){
+                    searchMovie("star")
+                }
+                return false
+            }
+        })
+    }
+
     private fun recyclerViewInit(){
         mainActivityBinding.movieRecyclerView.layoutManager = LinearLayoutManager(this)
         searchMovie("star")
