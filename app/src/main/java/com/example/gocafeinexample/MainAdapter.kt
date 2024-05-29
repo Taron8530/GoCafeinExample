@@ -29,4 +29,12 @@ class MainAdapter(private var movieList : ArrayList<SearchResponseDataDTO.Search
     fun setClickListener(listener: MovieItemClickListener){
         this.listener = listener
     }
+
+    fun setList(list : ArrayList<SearchResponseDataDTO.Search>){
+        movieList.clear()
+        for(i in list){
+            movieList.add(i)
+        }
+        notifyDataSetChanged()
+    }
 }
