@@ -19,7 +19,7 @@ data class SearchResponseDataDTO(
         var type: String,
         @SerializedName("Year")
         var year: String,
-        @SerializedName("imdID")
+        @SerializedName("imdbID")
         var imdbID: String
     )
 }

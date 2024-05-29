@@ -13,8 +13,7 @@ interface ApiInterface {
     ): Call<SearchResponseDataDTO>
     @GET("/?")
     fun detailInformation(
-        @Query("apikey") apiKey: String?,
-        @Query("s") searchKeyword: String?,
-        @Query("page") page: Int
-    ): Call<SearchResponseDataDTO?>?
+        @Query("apikey") apiKey: String,
+        @Query("i") imdbID: String
+    ): Call<DetailResponseDataDTO>
 }
